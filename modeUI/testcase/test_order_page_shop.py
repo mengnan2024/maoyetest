@@ -16,16 +16,17 @@ class Test_order_page(BaseMethod):
         self.click_until_visiable(Login_page.remember_password)  # 点击记住密码
         self.click_until_visiable(Login_page.login_button)  # 点击登录
         self.page_title_is(Index_page.order_page_title)  # 判断标题
+        self.warning_tip(Index_page.close_tip) # 关闭提示按钮
 
-        # '''手动拉单'''
+        '''手动拉单'''
         # self.click_until_visiable(Index_page.manual_pull_button)  # 手动拉单
-        # # self.click_until_visiable(Order_page.order_num_radio)  # 电商订单号
+        # #self.click_until_visiable(Index_page.order_num_radio)  # 电商订单号
         # self.click_until_visiable(Manual_order_page.shop_type_selectBox)  # 点击店铺类型
         # self.select_option(Manual_order_page.shop_type_ul, 1)  # 选择店铺类型
         # self.click_until_visiable(Manual_order_page.download_shop_selectBox)  # 点击下载店铺
         # self.select_option(Manual_order_page.download_shop_ul, 1)  # 选择下载店铺
         # self.click_fixed_area(800, 300)  # 点击其他区域
-        # # self.click_until_visiable(Manual_order_page.close_download_button)  # 点击关闭
+        # #self.click_until_visiable(Manual_order_page.close_download_button)  # 点击关闭
         # self.click_until_visiable(Manual_order_page.start_download_button)  # 点击开始
         # sleep(40)  # 等待执行40s
         # self.element_text_is(Manual_order_page.start_download_button,
@@ -33,24 +34,42 @@ class Test_order_page(BaseMethod):
         # self.click_until_visiable(Manual_order_page.start_download_button)  # 点击完成
 
         '''创建订单'''
-        self.click_until_visiable(Index_page.create_order_button) #点击创建订单按钮
-        self.send_keys_until_visiable(Create_order_page.name,'自动化脚本创建的订单') #收货人
-        self.send_keys_until_visiable(Create_order_page.mobile, '99999999') #收货人手机
-        self.click_until_visiable(Create_order_page.area_province)
-        self.select_option(Create_order_page.area_province_ul, 1) #选择省份
-        self.click_until_visiable(Create_order_page.area_city)
-        self.select_option(Create_order_page.area_city_ul, 1) # 选择城市
-        self.click_until_visiable(Create_order_page.area_county)
-        self.select_option(Create_order_page.area_county_ul, 1) # 选择区县
-        self.send_keys_until_visiable(Create_order_page.street, '测试街道') #填写街道
-        self.send_keys_until_visiable(Create_order_page.seller_note, '------------autoTest----------')
+        # self.click_until_visiable(Index_page.create_order_button) #点击创建订单按钮
+        # self.send_keys_until_visiable(Create_order_page.name,'自动化脚本创建的订单') #收货人
+        # self.send_keys_until_visiable(Create_order_page.mobile, '99999999') #收货人手机
+        # self.click_until_visiable(Create_order_page.area_province)
+        # self.select_option(Create_order_page.area_province_ul, 1) #选择省份
+        # self.click_until_visiable(Create_order_page.area_city)
+        # self.select_option(Create_order_page.area_city_ul, 1) # 选择城市
+        # self.click_until_visiable(Create_order_page.area_county)
+        # self.select_option(Create_order_page.area_county_ul, 1) # 选择区县
+        # self.send_keys_until_visiable(Create_order_page.street, '测试2街道') #填写街道
+        # self.send_keys_until_visiable(Create_order_page.seller_note, '------------autoTest----------')
+        #
+        # self.click_until_visiable(Create_order_page.texture)
+        # self.select_option(Create_order_page.texture_ul, 1)  # 选择材质
+        # self.click_until_visiable(Create_order_page.color)
+        # self.select_option(Create_order_page.color_ul, 3)  # 选择颜色
+        # self.click_until_visiable(Create_order_page.mobile_mode)
+        # self.send_keys_until_visiable(Create_order_page.mobile_mode, 'iphone12')
+        # self.select_option(Create_order_page.mobile_mode_ul, 1)  # 选择型号'''
+        # self.click_until_visiable(Create_order_page.picture_num)
+        # self.send_keys_until_visiable(Create_order_page.picture_num, '骑车奥特曼')
+        # self.select_option(Create_order_page.picture_num_ul, 1)   # 选择图片编码
+        # self.send_keyborad(Create_order_page.down_turn)  # 下滑页面
+        # self.click_until_visiable(Create_order_page.confirm_button) # 确定
 
-        self.click_until_visiable(Create_order_page.texture)
-        self.select_option(Create_order_page.texture_ul, 1)  # 选择材质
-        self.click_until_visiable(Create_order_page.color)
-        self.select_option(Create_order_page.color_ul, 3)  # 选择颜色
-        self.click_until_visiable(Create_order_page.mobile_mode)
-        self.select_option(Create_order_page.mobile_mode_ul, 1)  # 选择型号
+        '''订单搜索'''
+        self.click_until_visiable(Index_page.copy_order_num) # 复制刚才生成的订单号
+        self.send_keyborad(Index_page.paste_order_num) # 粘贴订单号
+        self.click_until_visiable(Index_page.search_button) # 点击搜索
+
+
+        #self.element_text_is((Index_page.search_list_order_num), self.splice_text(self.get_text())) # 搜索列表判断
+        self.element_text_is((Index_page.search_list_order_num), self.split_text(self.get_text()))
+        self.element_text_is((Index_page.search_list_order_num), self.split_text(self.get_text()))
+
+
 
 
 

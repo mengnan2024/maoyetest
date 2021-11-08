@@ -1,3 +1,4 @@
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
 
@@ -18,7 +19,8 @@ class Create_order_page():
     color = ('颜色', By.XPATH, '//*[@id="pane-1"]/div/div[2]/div[2]/div/div/div/input')
     color_ul = ('选颜色', By.XPATH, '/html/body/div[7]/div[1]/div[1]/ul')
     mobile_mode = ('手机型号', By.XPATH, '//*[@id="pane-1"]/div/div[3]/div[1]/div/div/div[1]/input')
-    mobile_mode_ul = ('选手机型号', By.XPATH, '//*[@id="cascader-menu-7603-0"]/div[1]/ul')
+    mobile_mode_ul = ('选手机型号', By.XPATH, '/html/body/div[8]/div[2]/div[1]/ul')
     picture_num = ('图案编码', By.XPATH, '//*[@id="pane-1"]/div/div[4]/div/div/div/div[1]/input')
-    picture_num_ul = ('选图案编码', By.XPATH, '/html/body/div[3]/div[1]/div[1]/ul')
-
+    picture_num_ul = ('选图案编码', By.XPATH, '/html/body/div[9]/div[1]/div[1]/ul')
+    down_turn = ('翻页按键', By.TAG_NAME, 'body', 'Keys.END')
+    confirm_button = ('确定按钮', By.XPATH, '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[3]/div/div[3]/div/button[2]')

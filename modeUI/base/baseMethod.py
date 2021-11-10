@@ -1,5 +1,5 @@
 '''封装selenium的公共方法'''
-
+import random
 import win32con
 from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
@@ -8,8 +8,10 @@ from selenium.webdriver.support import wait
 from selenium.webdriver.support import expected_conditions as EC
 import win32clipboard as w
 
+from utils.config_yaml import YamlHandler
 
-class BaseMethod():
+
+class BaseMethod(object):
     '''浏览器的常用封装操作'''
 
     # 打开浏览器
@@ -18,15 +20,17 @@ class BaseMethod():
         if browser_name == 'Chrome':
             self.driver = webdriver.Chrome()
             self.driver.get(url)
-        elif browser_name == 'Opera':
+        if browser_name == 'Opera':
             self.driver = webdriver.Opera()
             self.driver.get(url)
-        elif browser_name == 'firefox':
+        if browser_name == 'firefox':
             self.driver = webdriver.firefox()
+            self.driver.get(url)
         self.driver.maximize_window()
-        self.driver.get(url)
-
         return self.driver
+
+    def quit_browser(self):
+        self.driver.quit()
 
     # 等待元素出现
     def wait_element_visiable(self, locate):
@@ -46,6 +50,11 @@ class BaseMethod():
     # except:
     #     print(locate[0] + '无法点击')
 
+    # 加随机数 12位
+    def add_random(self):
+        data = random.randint(10000000000, 99999999999)
+        return str(data)
+
     # 元素出现时输入
     def send_keys_until_visiable(self, locate, content):
         try:
@@ -53,10 +62,15 @@ class BaseMethod():
         except AttributeError:
             print('无输入属性')
 
+    # 清空文件内容
+    def clear_file_content(self, file_path):
+        f = open(file_path, 'r+')
+        f.truncate()
+
     # 多个class取其中一个
     def more_class_click(self, locate):
-        print(self.driver.find_elements(locate[1], locate[2], ) )
-        #self.driver.find_elements(locate[1], locate[2], )[locate[3]].click()
+        print(self.driver.find_elements(locate[1], locate[2], ))
+        # self.driver.find_elements(locate[1], locate[2], )[locate[3]].click()
 
     # 动态下拉框，通过ul找li
     def select_option(self, ul_locate, option_num):
@@ -72,13 +86,14 @@ class BaseMethod():
     # 页面下滑
     def down_turn(self):
         self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.END)
+
     # 滑动至底部
     def dibu(self):
-        js="window.scrollTo(0,-document.body.scrollHeight)"
+        js = "window.scrollTo(0,-document.body.scrollHeight)"
         self.driver.execute_script(js)
 
     # 滑动至元素可见
-    def turn_down_element(self,locate):
+    def turn_down_element(self, locate):
         element = self.driver.find_element(locate[1], locate[2])
         self.driver.execute_script('arguments[0].scrollIntoView()', element)
 
@@ -97,12 +112,17 @@ class BaseMethod():
     # except:
     #     print('【' + title_name[0] + '】与标题不符')
 
+    # 获取元素内文字
+    def element_text_content(self, locate):
+        text = self.driver.find_element(locate[1], locate[2]).get_attribute('innerText')
+        return text
+
     # 判断元素内的文字
     def element_text_is(self, locate, element_text):
         # try:
-        text = self.driver.find_element(locate[1], locate[2]).get_attribute('innerText')
-        print(text)
-        assert text == element_text
+        content = self.element_text_content(locate)
+        print('操作人：' + content)
+        assert content == element_text
 
     # except:
     # print('文本不符，检查相关业务流程')
@@ -110,6 +130,10 @@ class BaseMethod():
     # 判断拆分后的字符串与剪切板
     def get_text_is(self, actual_text):
         assert self.get_text() == actual_text
+
+    # 剪切板内容写入文件
+    def from_copy_to_file(self, file):
+        YamlHandler(file).write_yaml(self.get_text())
 
     # 获取剪切板
     def get_text(self):
@@ -126,10 +150,10 @@ class BaseMethod():
         return '%s%s' % ('订单： ', text)
 
     # 拆分字符串
-    def split_text(self, locate):
+    def split_text(self, locate, start_num, end_num):
         text = self.driver.find_element(locate[1], locate[2]).get_attribute('innerText')
         print(text)
-        a = text[4:-1]  # -1 去掉空格
+        a = text[start_num:end_num]  # -1 去掉空格
 
         return a
 

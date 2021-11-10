@@ -5,6 +5,7 @@ from modeUI.page.shop.order_management.create_order_page import Create_order_pag
 from modeUI.page.shop.order_management.index_order_management_page import Index_page
 from modeUI.page.shop.order_management.manual_order_page import Manual_order_page
 from modeUI.page.shop.order_management.more_operate_page import More_operate
+from utils.config_yaml import YamlHandler
 
 '''主页操作'''
 
@@ -22,12 +23,12 @@ class Index_page_method(BaseMethod):
         self.select_option(Create_order_page.area_city_ul, 1)  # 选择城市
         self.click_until_visiable(Create_order_page.area_county)
         self.select_option(Create_order_page.area_county_ul, 1)  # 选择区县
-        self.send_keys_until_visiable(Create_order_page.street, '测试2街道')  # 填写街道
+        self.send_keys_until_visiable(Create_order_page.street, '测试街道' + self.add_random())  # 填写街道
         self.send_keys_until_visiable(Create_order_page.seller_note, '------------autoTest----------')  # 卖家备注
         self.click_until_visiable(Create_order_page.express_selection)
         self.select_option(Create_order_page.express_selection_ul, 1)  # 选择快递
         self.send_keys_until_visiable(Create_order_page.buyer_id, '2333333333333')  # 买家id
-
+        sleep(2)
         self.click_until_visiable(Create_order_page.texture)
         self.select_option(Create_order_page.texture_ul, 1)  # 选择材质
         self.click_until_visiable(Create_order_page.color)
@@ -59,11 +60,14 @@ class Index_page_method(BaseMethod):
         self.click_until_visiable(Manual_order_page.start_download_button)  # 点击完成
 
     # 搜索订单
-    def search_list_order(self):
-        self.click_until_visiable(Index_page.copy_order_num)  # 复制刚才生成的订单号
-        self.send_keyborad(Index_page.paste_order_num)  # 粘贴订单号
+    def search_list_order(self, file_path):
+        data = self.split_text(Index_page.search_list_order_num, 4, -1)  # 获取第一条的订单号
+        YamlHandler(file_path).write_yaml({'order_num': data})  # 单号写入yaml
+
+        self.send_keys_until_visiable(Index_page.paste_order_num, data)  # 填入搜索框
+        sleep(2)
         self.click_until_visiable(Index_page.search_button)  # 点击搜索
-        self.get_text_is(actual_text=self.split_text(Index_page.search_list_order_num))  # 判断搜索
+        # self.get_text_is(actual_text=self.split_text(Index_page.search_list_order_num))  # 判断搜索
 
     # 订单推送
     def push_order(self):
@@ -93,5 +97,3 @@ class Index_page_method(BaseMethod):
         self.click_until_visiable(Index_page.more_operate)  # 更多操作
         self.click_until_visiable(More_operate.refresh_code)  # 刷新编码
         self.click_until_visiable(Index_page.confirm_button)  # 确认
-
-

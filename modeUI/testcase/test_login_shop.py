@@ -1,6 +1,6 @@
 from modeUI.base.baseMethod import BaseMethod
 from modeUI.page.shop.login_page import Login_page
-from modeUI.page.shop.index_page import Order_page
+from modeUI.page.shop.order_management.index_order_management_page import Order_page
 
 """测试登录"""
 class TestLogin(BaseMethod):

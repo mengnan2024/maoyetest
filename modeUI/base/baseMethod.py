@@ -55,7 +55,8 @@ class BaseMethod():
 
     # 多个class取其中一个
     def more_class_click(self, locate):
-        self.driver.find_elements(locate[1], locate[2], )[locate[3]].click()
+        print(self.driver.find_elements(locate[1], locate[2], ) )
+        #self.driver.find_elements(locate[1], locate[2], )[locate[3]].click()
 
     # 动态下拉框，通过ul找li
     def select_option(self, ul_locate, option_num):

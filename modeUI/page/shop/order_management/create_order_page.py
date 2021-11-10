@@ -2,7 +2,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
 
-class Create_order_page():
+class Create_order_page:
     name = ('收货人', By.XPATH,'//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[3]/div/div[2]/form/div[3]/div[1]/div/div/input')
     mobile = ('收货人手机', By.XPATH, '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[3]/div/div[2]/form/div[3]/div[2]/div/div/input')
     area_province = ('省份', By.XPATH, '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[3]/div/div[2]/form/div[4]/div[1]/div/div/div/input')

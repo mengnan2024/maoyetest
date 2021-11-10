@@ -1,0 +1,25 @@
+# —— 以下为SSH方式连接的mysql配置，只能保留一组，另一组必须用#号每行注释掉（变成绿色）
+
+mysql_test:
+  ssh_adress: '120.79.40.167'
+  ssh_port: 22
+  ssh_username: 'hmtest'
+  ssh_password: 'hmtest*&^%'
+
+  sql_adress: '120.79.40.167'
+  sql_port: 3306
+  sql_username: 'hygtest'
+  sql_password: 'hygtest@#$%'
+  sql_db: 'hygtest'
+
+#mysql_online:
+#  ssh_adress: '120.79.40.167'
+#  ssh_port: 22
+#  ssh_username: 'hmtest'
+#  ssh_password: 'hmtest*&^%'
+#
+#  sql_adress: 'rm-wz9jvfarq9a6cdl3sjm.mysql.rds.aliyuncs.com'
+#  sql_port: 3306
+#  sql_username: 'hyg_read'
+#  sql_password: 'hyg_read202103**'
+#  sql_db: 'hyg'

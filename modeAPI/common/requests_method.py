@@ -1,7 +1,7 @@
 import json
 import requests
 
-from modeAPI.utils.get_excel import readFromExcel
+from utils import readFromExcel
 
 '''请求的公共方法，仅封装了GET和POST请求方式'''
 def requests_method(file_path, sheet_name, row_num):

@@ -2,7 +2,7 @@ import pytest
 
 from modeAPI.common.requests_method import requests_method
 from modeAPI.log.logger import Logger
-from modeAPI.utils.get_excel import readFromExcel
+from utils import readFromExcel
 
 file_path = r'C:\Users\Administrator\Desktop\order_api.xlsx'
 

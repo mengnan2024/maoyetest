@@ -8,6 +8,8 @@ from selenium.webdriver.support import wait
 from selenium.webdriver.support import expected_conditions as EC
 import win32clipboard as w
 
+from utils.config_yaml import YamlHandler
+
 
 class BaseMethod():
     '''浏览器的常用封装操作'''
@@ -53,10 +55,15 @@ class BaseMethod():
         except AttributeError:
             print('无输入属性')
 
+    # 清空文件内容
+    def clear_file_content(self, file_path):
+        f = open(file_path, 'r+')
+        f.truncate()
+
     # 多个class取其中一个
     def more_class_click(self, locate):
-        print(self.driver.find_elements(locate[1], locate[2], ) )
-        #self.driver.find_elements(locate[1], locate[2], )[locate[3]].click()
+        print(self.driver.find_elements(locate[1], locate[2], ))
+        # self.driver.find_elements(locate[1], locate[2], )[locate[3]].click()
 
     # 动态下拉框，通过ul找li
     def select_option(self, ul_locate, option_num):
@@ -72,13 +79,14 @@ class BaseMethod():
     # 页面下滑
     def down_turn(self):
         self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.END)
+
     # 滑动至底部
     def dibu(self):
-        js="window.scrollTo(0,-document.body.scrollHeight)"
+        js = "window.scrollTo(0,-document.body.scrollHeight)"
         self.driver.execute_script(js)
 
     # 滑动至元素可见
-    def turn_down_element(self,locate):
+    def turn_down_element(self, locate):
         element = self.driver.find_element(locate[1], locate[2])
         self.driver.execute_script('arguments[0].scrollIntoView()', element)
 
@@ -110,6 +118,10 @@ class BaseMethod():
     # 判断拆分后的字符串与剪切板
     def get_text_is(self, actual_text):
         assert self.get_text() == actual_text
+
+    # 剪切板内容写入文件
+    def from_copy_to_file(self, file):
+        YamlHandler(file).write_yaml(self.get_text())
 
     # 获取剪切板
     def get_text(self):

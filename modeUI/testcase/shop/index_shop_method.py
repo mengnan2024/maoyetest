@@ -61,11 +61,18 @@ class Index_page_method(BaseMethod):
 
     # 搜索订单
     def search_list_order(self, file_path):
+<<<<<<< HEAD:modeUI/testcase/shop/index_shop_method.py
         data = self.split_text(Index_page.search_list_order_num, 4, -1)  # 获取第一条的订单号
         YamlHandler(file_path).write_yaml({'order_num': data})  # 单号写入yaml
 
         self.send_keys_until_visiable(Index_page.paste_order_num, data)  # 填入搜索框
         sleep(2)
+=======
+        data = self.split_text(Index_page.search_list_order_num)  # 获取第一条的订单号
+        YamlHandler(file_path).write_yaml({'order_num' : data})  # 单号写入yaml
+
+        self.send_keys_until_visiable(Index_page.paste_order_num, data)  # 填入搜索框
+>>>>>>> origin/master:modeUI/testcase/index_page_method.py
         self.click_until_visiable(Index_page.search_button)  # 点击搜索
         # self.get_text_is(actual_text=self.split_text(Index_page.search_list_order_num))  # 判断搜索
 

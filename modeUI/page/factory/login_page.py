@@ -1,7 +1,10 @@
 from selenium.webdriver.common.by import By
 
+<<<<<<< HEAD
 '''登录页面'''
 
+=======
+>>>>>>> origin/master
 
 class Login_Page:
     login_page_title = ('登录页面标题', '工厂端')

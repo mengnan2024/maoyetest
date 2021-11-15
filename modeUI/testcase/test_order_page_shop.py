@@ -45,7 +45,7 @@ class Test_order_page(BaseMethod):
         '''审批>合批次>打标签>扫码发货'''
 
     @pytest.mark.run(order=2)
-    def test_sfactory(self):
+    def test_factory(self):
         file_path = r'C:\Users\Administrator\Desktop\pythonProject1\modeUI\data\temp_data.yaml'
         # 登录
         Login_page.login_page(self)
@@ -53,10 +53,8 @@ class Test_order_page(BaseMethod):
         Index_factory_method.system_configuration(self)
 
         # 审批订单
-        try:
-            Index_factory_method.wait_pass_order(self, file_path)
-        except:
-            pass
+
+        Index_factory_method.wait_pass_order(self, file_path)
 
         # 合批次
         Index_factory_method.batch_management(self, file_path)

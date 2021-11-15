@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 
-<<<<<<< HEAD
 '''批次管理'''
 
 
@@ -26,7 +25,7 @@ class Batch_management_page:
     set_printer = ('设置打印机', By.XPATH, '//*[contains(text(), "设置打印机")]')
 
     batch_management_tab = ('批次管理标签', By.XPATH, '//*[@id="tab-ProductionBatch"]/div')
-=======
+
 
 class Batch_management:
     goods_id = ('商品ID', By.XPATH, '//*[@id="app"]/div/div[2]/section/div/div[2]/div[1]/div/form/div[2]/div/div/input')
@@ -38,4 +37,3 @@ class Batch_management:
     already_create_tag = ('已生成', By.XPATH, '//*[contains(text(), "已生成")]')
 
     batch_num = ('批次号', By.XPATH, '//*[@id="app"]/div/div[2]/section/div/div[2]/div[1]/div/form/div[2]/div/div/input')
->>>>>>> origin/master

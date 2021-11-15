@@ -17,20 +17,29 @@ class BaseMethod(object):
     # 打开浏览器
     # @pytest.fixture(scope='session')
     def open_browser(self, browser_name, url):
-        if browser_name == 'Chrome':
-            self.driver = webdriver.Chrome()
-            self.driver.get(url)
-        if browser_name == 'Opera':
-            self.driver = webdriver.Opera()
-            self.driver.get(url)
-        if browser_name == 'firefox':
-            self.driver = webdriver.firefox()
-            self.driver.get(url)
-        self.driver.maximize_window()
-        return self.driver
+        try:
+            if browser_name == 'Chrome':
+                self.driver = webdriver.Chrome()
+                self.driver.get(url)
+            if browser_name == 'Opera':
+                self.driver = webdriver.Opera()
+                self.driver.get(url)
+            if browser_name == 'firefox':
+                self.driver = webdriver.firefox()
+                self.driver.get(url)
+            self.driver.maximize_window()
+            return self.driver
+
+        except Exception as e:
+            print('cant open the browser!')
+            raise e
 
     def quit_browser(self):
-        self.driver.quit()
+        try:
+            self.driver.quit()
+        except Exception as e:
+            print('no driver!')
+            raise e
 
     # 等待元素出现
     def wait_element_visiable(self, locate):
@@ -39,16 +48,17 @@ class BaseMethod(object):
                 EC.visibility_of_element_located((locate[1], locate[2]))
             )
             return ele
-        except:
+        except Exception as e:
             print(locate[0] + '的' + locate[2] + '元素未找到')
+            raise e
 
     # 元素出现点击
     def click_until_visiable(self, locate):
-        # try:
-        self.wait_element_visiable(locate).click()
-
-    # except:
-    #     print(locate[0] + '无法点击')
+        try:
+            self.wait_element_visiable(locate).click()
+        except Exception as e:
+            print(locate[0] + 'cant click!')
+            raise e
 
     # 加随机数 12位
     def add_random(self):
@@ -59,8 +69,9 @@ class BaseMethod(object):
     def send_keys_until_visiable(self, locate, content):
         try:
             self.wait_element_visiable(locate).send_keys(content)
-        except AttributeError:
+        except AttributeError as e:
             print('无输入属性')
+            raise e
 
     # 清空文件内容
     def clear_file_content(self, file_path):

@@ -1,61 +1,13 @@
-'./data/temp_data.yaml'
-<<<<<<< HEAD
-import datetime
-import time
-from datetime import date
+import requests
 
-import pytest
 
-from modeUI.base.baseMethod import BaseMethod
-from utils.config_yaml import YamlHandler
+class Test_logger:
+    def test_01(self):
+        res = requests.get(
+            'https://cn.bing.com/search?q=pytest+%E6%97%A5%E5%BF%97%E5%AD%98%E5%82%A8&qs=n&form=QBRE&sp=-1&pq=pytest+%E6%97%A5%E5%BF%97cunchu&sc=0-15&sk=&cvid=CA4B6713DCB34B86A2FD610F781BA4EE')
 
-# file_path = '../data/temp_data.yaml'
-# data = 'SG21111009503048000'
-# YamlHandler(file_path).write_yaml(data)
+        assert res.status_code == 200
+        res.close()
 
-# data = YamlHandler('../data/temp_data.yaml').read_yaml()
-# print(data)
-
-# f = open(file_path, 'r+')
-# f.truncate()
-# dataA = {'2': '3'}
-# dataB = {'1': '2'}
-# dataC = ['12':'1']
-# data = YamlHandler('../data/temp_data.yaml').write_yaml(dataC)
-# from utils.msg_dingding import sendmessage
-#
-from utils.msg_dingding import sendmessage
-
-mes = (
-    str('#店铺端 - - - - - -【推单成功】' + '\n' + '\n' +'订单号：' + '\n' + '\n' + time.strftime('%Y-%m-%d %H:%M:%S',
-                                                                                  time.localtime())))
-
-sendmessage(mes)
-# class TestDemo(BaseMethod):
-#     @pytest.mark.run(order=2)
-#     def test_03(self):
-#         self.open_browser('Chrome', 'https://www.baidu.com')  # 打开页面
-#         self.quit_browser()
-#
-#     @pytest.mark.run(order=1)
-#     def test_02(self):
-#         self.open_browser('Chrome', 'https://www.cnblogs.com/ff-gaofeng/p/12090688.html')  # 打开页面
-#         self.driver.quit()
-=======
-from modeUI.base.baseMethod import BaseMethod
-from utils.config_yaml import YamlHandler
-
-file_path = '../data/temp_data.yaml'
-# data = 'SG21111009503048000'
-# YamlHandler(file_path).write_yaml(data)
-
-data = YamlHandler('../data/temp_data.yaml').read_yaml()
-print(data)
-
-# f = open(file_path, 'r+')
-# f.truncate()
-dataA = {'2': '3'}
-dataB = {'1': '2'}
-dataC = ['12':'1
-data = YamlHandler('../data/temp_data.yaml').write_yaml(dataC)
->>>>>>> origin/master
+    def test_02(self):
+        assert 1 == 2

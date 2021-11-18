@@ -1,6 +1,7 @@
 '''封装selenium的公共方法'''
 import random
 import win32con
+from pandas.io.clipboard import set_clipboard
 from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
@@ -145,6 +146,13 @@ class BaseMethod(object):
     # 剪切板内容写入文件
     def from_copy_to_file(self, file):
         YamlHandler(file).write_yaml(self.get_text())
+
+    # 写入剪切板
+    def set_text(self, text):
+        w.OpenClipboard()
+        w.EmptyClipboard()
+        w.SetClipboardText(text)
+        w.CloseClipboard()
 
     # 获取剪切板
     def get_text(self):

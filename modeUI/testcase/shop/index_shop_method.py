@@ -59,8 +59,8 @@ class Index_page_method(BaseMethod):
                              '完成')  # 判断按钮文字【完成】                                                          #判断按钮文字是不是【完成】
         self.click_until_visiable(Manual_order_page.start_download_button)  # 点击完成
 
-    # 搜索订单
-    def search_list_order(self, file_path):
+    # 通过商品ID搜索订单
+    def search_list_order_by_orderID(self, file_path):
         data = self.split_text(Index_page.search_list_order_num, 4, -1)  # 获取第一条的订单号
         YamlHandler(file_path).write_yaml({'order_num': data})  # 单号写入yaml
 
@@ -68,11 +68,21 @@ class Index_page_method(BaseMethod):
         sleep(2)
 
         self.click_until_visiable(Index_page.search_button)  # 点击搜索
+        self.click_until_visiable(Index_page.order_checkBox1)  # 选中订单
         # self.get_text_is(actual_text=self.split_text(Index_page.search_list_order_num))  # 判断搜索
+
+    # 通过买家ID搜索订单
+    def search_list_order_by_buyerID(self, buyer_id):
+        self.send_keys_until_visiable(Index_page.buyer_id_input, buyer_id)  # 填入买家ID输入框
+        sleep(2)
+        self.click_until_visiable(Index_page.data_list_limit)  # 点击展示数据配置选项
+        self.select_option(Index_page.data_list_limit_ul, 7)  # 选择500条
+        sleep(10)
+        self.click_until_visiable(Index_page.search_button)  # 点击搜索
+        self.click_until_visiable(Index_page.order_checkBox_all)  # 选中全部订单
 
     # 订单推送
     def push_order(self):
-        self.click_until_visiable(Index_page.order_checkBox1)  # 选中订单
         self.click_until_visiable(Index_page.push_order_button)  # 订单推送
         self.click_until_visiable(Index_page.confirm_button)  # 确认
 

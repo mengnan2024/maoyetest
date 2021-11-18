@@ -13,6 +13,11 @@ class Index_factory_method(BaseMethod):
     def wait_pass_order(self, file_path):
         Pass_order_method.pass_order(self, file_path)
 
+    '''批量审核订单'''
+
+    def wait_pass_more_orders(self):
+        Pass_order_method.pass_more_order(self)
+
     '''批次管理-合成批次'''
 
     def batch_management(self, file_path):

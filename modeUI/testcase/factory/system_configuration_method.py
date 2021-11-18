@@ -11,7 +11,7 @@ class System_configuration_method(BaseMethod):
     def printer_configuration(self):
         self.click_until_visiable(Index_factory_page.system_configuration)  # 系统设置
         self.click_until_visiable(System_configuration_page.printer_conf)  # 点击打印机设置
-        sleep(5)
+        sleep(7)
 
         # 设置标签
         self.click_until_visiable(System_configuration_page.printer_name)

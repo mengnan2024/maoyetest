@@ -19,7 +19,8 @@ class Index_page:
     order_num_input = (
         '订单号输入框', By.XPATH, '//*[@id="app"]/div/div/section/div/div[1]/div[1]/div/div/form/div[2]/div/div[2]/input')
 
-    buyer_id_input = ('买家ID', By.CLASS_NAME, 'flex_1 ml-5 el-input el-input--mini el-input--suffix')
+    buyer_id_input = (
+    '买家ID', By.XPATH, '//*[@id="app"]/div/div/section/div/div[1]/div[1]/div/div/form/div[2]/div/div[3]/input')
 
     copy_order_num = ('复制订单号', By.XPATH, '')
     paste_order_num = (
@@ -29,11 +30,18 @@ class Index_page:
 
     search_list_order_num = ('订单列表', By.XPATH, '//*[contains(text(), "订单：")]')
 
+    order_checkBox_all = (
+        '全部订单选中框', By.XPATH, '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/label/span')
     order_checkBox1 = ('订单选中框1', By.XPATH,
                        '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/div[1]/label/span[1]')
     order_checkBox2 = ('订单选中框2', By.XPATH,
                        '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/label/span[1]')
+
     confirm_button = ('确认', By.XPATH, '//*[contains(text(),"确定")]')
+
+    data_list_limit = ('展示所少条数据的按钮', By.XPATH,
+                       '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[1]/div/div/div/span/div/div/input')
+    data_list_limit_ul = ('选择每页展示多少条数据', By.XPATH, '/html/body/div[2]/div[1]/div[1]/ul')
     more_operate = (
 
         '更多操作', By.XPATH, '//*[@id="app"]/div/div/section/div/div[1]/div[2]/div[2]/div[3]/div/div[7]/button/span')

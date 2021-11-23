@@ -20,3 +20,4 @@ class Wait_pass_orders_page:
 
     all_orders_checkbox = (
         '选中全部订单', By.XPATH, '//*[@id="app"]/div/div[2]/section/div/div[2]/div[2]/div[2]/div[1]/div[1]/label/span')
+    close_progress = ('关闭进度弹窗',By.XPATH, '//*[contains(text(), "关 闭")]')

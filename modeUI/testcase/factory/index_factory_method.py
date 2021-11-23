@@ -15,13 +15,18 @@ class Index_factory_method(BaseMethod):
 
     '''批量审核订单'''
 
-    def wait_pass_more_orders(self):
-        Pass_order_method.pass_more_order(self)
+    def wait_pass_more_orders(self, file_path):
+        Pass_order_method.pass_more_order(self, file_path)
 
     '''批次管理-合成批次'''
 
     def batch_management(self, file_path):
         Batch_management_method.merge_batch(self, file_path)  # 合批次
+
+    '''批次管理-全部合成批次'''
+
+    def batch_all_management(self):
+        Batch_management_method.merge_all_batch(self)  # 全部合批次
 
     '''打标签'''
 

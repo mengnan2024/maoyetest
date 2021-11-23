@@ -68,22 +68,24 @@ class Index_page_method(BaseMethod):
         sleep(2)
 
         self.click_until_visiable(Index_page.search_button)  # 点击搜索
-        self.click_until_visiable(Index_page.order_checkBox1)  # 选中订单
+        #self.click_until_visiable(Index_page.order_checkBox_all)  # 全选订单
         # self.get_text_is(actual_text=self.split_text(Index_page.search_list_order_num))  # 判断搜索
 
     # 通过买家ID搜索订单
     def search_list_order_by_buyerID(self, buyer_id):
         self.send_keys_until_visiable(Index_page.buyer_id_input, buyer_id)  # 填入买家ID输入框
         sleep(2)
-        self.click_until_visiable(Index_page.data_list_limit)  # 点击展示数据配置选项
-        self.select_option(Index_page.data_list_limit_ul, 7)  # 选择500条
-        sleep(10)
         self.click_until_visiable(Index_page.search_button)  # 点击搜索
-        self.click_until_visiable(Index_page.order_checkBox_all)  # 选中全部订单
 
     # 订单推送
     def push_order(self):
+        sleep(10)
+        self.click_until_visiable(Index_page.data_list_limit)  # 点击展示数据配置选项
+        self.select_option(Index_page.data_list_limit_ul, 7)  # 选择500条
+        sleep(10)
+        self.click_until_visiable(Index_page.order_checkBox_all)  # 选中全部订单
         self.click_until_visiable(Index_page.push_order_button)  # 订单推送
+        sleep(5)
         self.click_until_visiable(Index_page.confirm_button)  # 确认
 
     # 更多操作

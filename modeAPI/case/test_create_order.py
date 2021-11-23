@@ -5,8 +5,6 @@ from utils.get_excel import readFromExcel
 
 
 class TestCreateOrder:
-
-
     '''
     成功创建的订单，会先返回"data":"121111615025923001"， 这串数字对应sql中order_info表的order_no字段，通过order_no找到original_order_no【订单号】
     '''

@@ -42,7 +42,6 @@ def delete_more_rows(file_path, num):
     try:
         for i in range(num, -1, -1):
             delete_row(file_path, i)
-
     except PermissionError as e:
         print('目标excel还没关闭,没法删除！！！')
         raise e

@@ -21,15 +21,23 @@ class Test_order_page(BaseMethod):
     @pytest.mark.run(order=1)
     @pytest.mark.parametrize(
         # 临时表的路径，存放生成的电商订单号和对应的商品id
-        temp_data_yaml=r'C:\Users\Administrator\Desktop\pythonProject1\modeUI\data\temp_data.yaml',
+        'temp_data_yaml', [(r'C:\Users\Administrator\Desktop\pythonProject1\modeUI\data\temp_data.yaml')]
 
     )
-    def test_shop_page(self, temp_data_yaml):
+    # 店铺端登录参数
+    @pytest.mark.parametrize(
+        'browser_name, login_url, username, password', [(
+                'Chrome',
+                'https://tcshop.jzm2c.com/login',  # 测试环境
+                '时涛',
+                '123456'
+        )])
+    def test_shop_page(self, temp_data_yaml, browser_name, login_url, username, password):
         '''重置临时表的数据'''
         self.clear_file_content(temp_data_yaml)
 
         '''店铺端登录'''
-        Login_shop.login_shop(self)
+        Login_shop.login_shop(self, browser_name, login_url, username, password)
 
         '''创建订单'''
         Index_page_method.create_order_method(self)
@@ -52,10 +60,17 @@ class Test_order_page(BaseMethod):
     '''审批>合批次>打标签>扫码发货'''
 
     @pytest.mark.run(order=2)
-    def test_factory(self):
+    # 工厂端登录参数
+    @pytest.mark.parametrize('browser_name, login_url,username, password',
+                             [('Chrome',
+                               'https://tcfactory.jzm2c.com/login',
+                               '时涛',
+                               '123456'
+                               )])
+    def test_factory(self, browser_name, login_url, username, password):
         file_path = r'C:\Users\Administrator\Desktop\pythonProject1\modeUI\data\temp_data.yaml'
         # 登录
-        Login_page.login_page(self)
+        Login_page.login_page(self, browser_name, login_url, username, password)
         # 设置打印机
         Index_factory_method.system_configuration(self)
 

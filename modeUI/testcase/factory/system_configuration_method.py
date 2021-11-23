@@ -24,7 +24,7 @@ class System_configuration_method(BaseMethod):
         self.click_until_visiable(System_configuration_page.rotas_conf)  # 切到面单设置
         self.click_until_visiable(System_configuration_page.add_rotas_configuration)  # 新增面单设置
         self.click_until_visiable(System_configuration_page.express_selection)
-        self.select_option(System_configuration_page.express_selection_ul, 10)  # 选择面单快递公司
+        self.select_option(System_configuration_page.express_selection_ul, 1)  # 选择面单快递公司
         self.click_until_visiable(System_configuration_page.printer_name_rotas)
         self.select_option(System_configuration_page.printer_name_rotas_ul, 4)  # 选中面单打印机
         self.click_until_visiable(System_configuration_page.confirm_button)  # 确定

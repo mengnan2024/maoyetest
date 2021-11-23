@@ -10,7 +10,7 @@ class System_configuration_page:
 
     # 标签设置
     printer_name = (
-        '打印机名称', By.XPATH, '//*[@id="app"]/div/div[2]/section/div/div[2]/div/div[2]/form/div[1]/div/div/div[1]/input')
+        '打印机名称', By.XPATH, '//*[@id="app"]/div/div[2]/section/div/div[2]/div/div[2]/form/div[1]/div/div/div[1]')
     printer_name_ul = ('打印机选项', By.XPATH, '/html/body/div[2]/div[1]/div[1]/ul')
     template_radio = ('模板', By.XPATH,
                       '//*[@id="app"]/div/div[2]/section/div/div[2]/div/div[2]/form/div[2]/div/div/div[1]/div/label/span[1]/span')
